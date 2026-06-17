@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Christopher Mwangi — Statistical Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --white:    #ffffff;
+  --bg:       #f5f6f8;
+  --bg2:      #eef0f4;
+  --navy:     #0f1f3d;
+  --navy2:    #1a3260;
+  --blue:     #2563eb;
+  --blue-lt:  #eff4ff;
+  --blue-mid: rgba(37,99,235,0.15);
+  --green:    #059669;
+  --green-lt: #ecfdf5;
+  --amber:    #d97706;
+  --amber-lt: #fffbeb;
+  --red:      #dc2626;
+  --red-lt:   #fef2f2;
+  --text:     #0f1f3d;
+  --muted:    #64748b;
+  --border:   #e2e6ed;
+  --shadow:   0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.06);
+  --mono:     'DM Mono', monospace;
+  --sans:     'DM Sans', sans-serif;
+  --radius:   12px;
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ── NAV ─────────────────────────────────────── */
+nav{
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 0 var(--border);
+}
+
+.nav-inner{
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-monogram{
+  width: 38px; height: 38px;
+  background: var(--navy);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-size: 13px; font-weight: 500;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.brand-text{
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name{
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.1;
+}
+
+.brand-role{
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+.nav-links{
+  display: flex;
+  list-style: none;
+  gap: 0.25rem;
+}
+
+.nav-links a{
+  padding: 0.45rem 1rem;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-links a:hover{ color: var(--navy); background: var(--bg); }
+.nav-links a.active{ color: var(--blue); background: var(--blue-lt); }
+
+.nav-cta{
+  padding: 0.5rem 1.25rem;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.nav-cta:hover{ background: var(--navy2); }
+
+/* ── LAYOUT ──────────────────────────────────── */
+.page{
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 5rem;
+}
+
+/* ── HERO ─────────────────────────────────────── */
+.hero{
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 3rem 3rem 2.5rem;
+  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-eyebrow{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--blue);
+  background: var(--blue-lt);
+  border: 1px solid rgba(37,99,235,0.2);
+  padding: 4px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.25rem;
+}
+
+.hero h1{
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+
+.hero-accent{
+  color: var(--blue);
+}
+
+.hero-sub{
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.hero-actions{
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary{
+  padding: 0.6rem 1.5rem;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  display: inline-block;
+}
+.btn-primary:hover{ background: var(--navy2); transform: translateY(-1px); }
+
+.btn-outline{
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1.5px solid var(--border);
+  transition: border-color 0.15s, background 0.15s;
+  display: inline-block;
+}
+.btn-outline:hover{ border-color: var(--navy); background: var(--bg); }
+
+.hero-avatar{
+  width: 140px; height: 140px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+  box-shadow: var(--shadow-md);
+}
+
+/* ── KPI ROW ─────────────────────────────────── */
+.kpi-row{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.kpi-card{
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.kpi-card:hover{ box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.kpi-label{
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--mono);
+  margin-bottom: 0.4rem;
+}
+
+.kpi-value{
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--navy);
+}
+
+.kpi-sub{
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+  font-family: var(--mono);
+}
+
+.kpi-icon{
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.kpi-blue{ background: var(--blue-lt); color: var(--blue); }
+.kpi-green{ background: var(--green-lt); color: var(--green); }
+.kpi-amber{ background: var(--amber-lt); color: var(--amber); }
+.kpi-red{ background: var(--red-lt); color: var(--red); }
+
+/* ── MAIN GRID ───────────────────────────────── */
+.main-grid{
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ── CARD ────────────────────────────────────── */
+.card{
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow);
+}
+
+.card-title{
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.card-sub{
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+  margin-bottom: 1.5rem;
+}
+
+.card-divider{
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.25rem 0;
+}
+
+/* ── SECTION HEADER ─────────────────────────── */
+.sec-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.sec-title-block .sec-label{
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--blue);
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.sec-title-block h2{
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+/* ── SKILL BARS ─────────────────────────────── */
+.skill-group{ margin-bottom: 1.5rem; }
+
+.skill-group-title{
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--mono);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-item{ margin-bottom: 0.85rem; }
+
+.skill-row{
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.skill-name{ font-weight: 500; color: var(--navy); }
+.skill-level{ color: var(--muted); font-family: var(--mono); font-size: 11px; }
+
+.skill-bar{
+  height: 6px;
+  background: var(--bg2);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.skill-fill{
+  height: 100%;
+  border-radius: 99px;
+  width: 0;
+  background: linear-gradient(90deg, var(--blue), #60a5fa);
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+.skill-fill.green{ background: linear-gradient(90deg, var(--green), #34d399); }
+.skill-fill.amber{ background: linear-gradient(90deg, var(--amber), #fcd34d); }
+
+/* ── PROJECT CARDS ──────────────────────────── */
+.project-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.proj-card{
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.proj-card:hover{ box-shadow: var(--shadow-md); transform: translateY(-3px); }
+
+.proj-status{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+  width: fit-content;
+}
+.proj-status.active{ background: var(--green-lt); color: var(--green); border: 1px solid rgba(5,150,105,0.2); }
+.proj-status.soon{ background: var(--amber-lt); color: var(--amber); border: 1px solid rgba(217,119,6,0.2); }
+.proj-status::before{ content:''; width:6px; height:6px; border-radius:50%; background:currentColor; }
+
+.proj-title{ font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+.proj-desc{ font-size: 13px; color: var(--muted); line-height: 1.7; flex: 1; margin-bottom: 1.25rem; }
+
+.proj-tags{ display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+
+.proj-tag{
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  background: var(--bg2);
+  color: var(--muted);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.proj-link{
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.15s;
+}
+.proj-link:hover{ gap: 8px; }
+
+/* ── ACTIVITY LIST ──────────────────────────── */
+.activity-item{
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.activity-item:last-child{ border-bottom: none; padding-bottom: 0; }
+
+.act-dot{
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 700;
+  flex-shrink: 0;
+}
+.dot-blue{ background: var(--blue-lt); color: var(--blue); }
+.dot-green{ background: var(--green-lt); color: var(--green); }
+.dot-amber{ background: var(--amber-lt); color: var(--amber); }
+
+.act-body{ flex: 1; }
+.act-text{ font-size: 13px; color: var(--navy); font-weight: 500; line-height: 1.4; }
+.act-sub{ font-size: 12px; color: var(--muted); margin-top: 2px; font-family: var(--mono); }
+
+/* ── CHART BARS ─────────────────────────────── */
+.mini-chart{
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 100px;
+  margin-top: 1rem;
+}
+
+.chart-col{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.chart-bar{
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  transition: height 1s cubic-bezier(0.4,0,0.2,1);
+  cursor: pointer;
+  min-height: 4px;
+}
+.chart-bar:hover{ opacity: 0.75; }
+
+.chart-lbl{
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--muted);
+}
+
+/* ── ABOUT SECTION ──────────────────────────── */
+.about-grid{
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-text p{ font-size: 14px; color: var(--muted); line-height: 1.85; margin-bottom: 1rem; }
+.about-text p strong{ color: var(--navy); font-weight: 600; }
+
+.tag-wrap{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
+
+.tag{
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 4px 12px;
+  background: var(--blue-lt);
+  color: var(--blue);
+  border: 1px solid rgba(37,99,235,0.2);
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.info-row{
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.info-row:last-child{ border-bottom: none; }
+.info-icon{ font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.info-lbl{ font-family: var(--mono); font-size: 10px; color: var(--muted); margin-bottom: 2px; letter-spacing: 0.06em; }
+.info-val{ color: var(--navy); font-weight: 500; }
+.info-val a{ color: var(--blue); text-decoration: none; }
+.info-val a:hover{ text-decoration: underline; }
+
+/* ── CONTACT ─────────────────────────────────── */
+.contact-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-link{
+  display: flex; align-items: center; gap: 12px;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.contact-link:last-of-type{ border-bottom: none; }
+.contact-link:hover{ color: var(--blue); }
+
+.clink-icon{
+  width: 38px; height: 38px;
+  background: var(--blue-lt);
+  color: var(--blue);
+  border: 1px solid rgba(37,99,235,0.2);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.form-group{ margin-bottom: 1rem; }
+.form-group label{
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+}
+.form-group input,
+.form-group textarea{
+  width: 100%;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  color: var(--navy);
+  font-family: var(--sans);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  resize: vertical;
+}
+.form-group input:focus,
+.form-group textarea:focus{
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-mid);
+}
+.form-group textarea{ min-height: 110px; }
+
+/* ── FOOTER ──────────────────────────────────── */
+footer{
+  border-top: 1px solid var(--border);
+  background: var(--white);
+  margin-top: 4rem;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+}
+
+.footer-inner{
+  max-width: 1160px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+footer p{ font-size: 13px; color: var(--muted); font-family: var(--mono); }
+footer a{ color: var(--blue); text-decoration: none; }
+
+/* ── PAGE SECTIONS ───────────────────────────── */
+.page-section{ display: none; }
+.page-section.active{ display: block; }
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media(max-width:900px){
+  .hero{ grid-template-columns: 1fr; }
+  .hero-avatar{ display: none; }
+  .kpi-row{ grid-template-columns: repeat(2,1fr); }
+  .main-grid{ grid-template-columns: 1fr; }
+  .project-grid{ grid-template-columns: 1fr; }
+  .about-grid{ grid-template-columns: 1fr; }
+  .contact-grid{ grid-template-columns: 1fr; }
+  .nav-links{ display: none; }
+}
+
+@media(max-width:600px){
+  .kpi-row{ grid-template-columns: 1fr; }
+  .page{ padding: 1.5rem 1rem 4rem; }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{ animation:none!important; transition:none!important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" onclick="showSection('home')">
+      <div class="brand-monogram">CM</div>
+      <div class="brand-text">
+        <span class="brand-name">Christopher Mwangi</span>
+        <span class="brand-role">Statistical Data Analyst</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" class="active" id="nav-home" onclick="showSection('home');return false;">Overview</a></li>
+      <li><a href="#" id="nav-about" onclick="showSection('about');return false;">About</a></li>
+      <li><a href="#" id="nav-skills" onclick="showSection('skills');return false;">Skills</a></li>
+      <li><a href="#" id="nav-projects" onclick="showSection('projects');return false;">Projects</a></li>
+      <li><a href="#" id="nav-contact" onclick="showSection('contact');return false;">Contact</a></li>
+    </ul>
+    <a href="mailto:christophermwangi537@gmail.com" class="nav-cta">Hire Me</a>
+  </div>
+</nav>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- ══ HOME ══ -->
+  <div class="page-section active" id="sec-home">
+
+    <!-- Hero card -->
+    <div class="hero" style="margin-bottom:1.5rem;">
+      <div>
+        <div class="hero-eyebrow">Statistical Data Analyst · Financial Domain</div>
+        <h1>Christopher<br><span class="hero-accent">Mwangi</span></h1>
+        <p class="hero-sub">I turn complex datasets into clear, actionable insights — specialising in statistical analysis, financial analytics, and AI-powered automation.</p>
+        <div class="hero-actions">
+          <a href="#" onclick="showSection('projects');return false;" class="btn-primary">View Projects</a>
+          <a href="#" onclick="showSection('contact');return false;" class="btn-outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-avatar">CM</div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div>
+          <div class="kpi-label">Tools Mastered</div>
+          <div class="kpi-value kpi-count" data-target="5">0</div>
+          <div class="kpi-sub">Python · SQL · Power BI</div>
+        </div>
+        <div class="kpi-icon kpi-blue">⬡</div>
+      </div>
+      <div class="kpi-card">
+        <div>
+          <div class="kpi-label">Active Projects</div>
+          <div class="kpi-value kpi-count" data-target="3">0</div>
+          <div class="kpi-sub">Finance · ML · Automation</div>
+        </div>
+        <div class="kpi-icon kpi-green">◈</div>
+      </div>
+      <div class="kpi-card">
+        <div>
+          <div class="kpi-label">Specialisation</div>
+          <div class="kpi-value" style="font-size:1rem;padding-top:6px;line-height:1.3;">Statistical<br>Analysis</div>
+          <div class="kpi-sub">Expert level</div>
+        </div>
+        <div class="kpi-icon kpi-amber">◉</div>
+      </div>
+      <div class="kpi-card">
+        <div>
+          <div class="kpi-label">Domain Focus</div>
+          <div class="kpi-value" style="font-size:1rem;padding-top:6px;line-height:1.3;">Financial<br>Analytics</div>
+          <div class="kpi-sub">Intermediate</div>
+        </div>
+        <div class="kpi-icon kpi-red">◧</div>
+      </div>
+    </div>
+
+    <!-- Skill chart + Activity -->
+    <div class="main-grid">
+      <div class="card">
+        <div class="card-title">Skills Proficiency</div>
+        <div class="card-sub">Across all technical domains</div>
+        <div class="mini-chart" id="skillChart"></div>
+        <hr class="card-divider"/>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <span style="font-size:12px;color:var(--muted);font-family:var(--mono);">
+            <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--blue);margin-right:4px;vertical-align:middle;"></span>Core Tools
+          </span>
+          <span style="font-size:12px;color:var(--muted);font-family:var(--mono);">
+            <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--green);margin-right:4px;vertical-align:middle;"></span>Statistical
+          </span>
+          <span style="font-size:12px;color:var(--muted);font-family:var(--mono);">
+            <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--amber);margin-right:4px;vertical-align:middle;"></span>ML / AI
+          </span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Project Activity</div>
+        <div class="card-sub">Current & upcoming work</div>
+        <div class="activity-item">
+          <div class="act-dot dot-green">FD</div>
+          <div class="act-body">
+            <div class="act-text">Financial Domain Dashboard</div>
+            <div class="act-sub">Excel KPI build — active now</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="act-dot dot-blue">ML</div>
+          <div class="act-body">
+            <div class="act-text">ML Financial Forecasting</div>
+            <div class="act-sub">Time-series exploration — this week</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="act-dot dot-amber">AI</div>
+          <div class="act-body">
+            <div class="act-text">AI Automation Pipeline</div>
+            <div class="act-sub">Design phase — coming soon</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /home -->
+
+  <!-- ══ ABOUT ══ -->
+  <div class="page-section" id="sec-about">
+    <div class="sec-header" style="margin-bottom:1.5rem;">
+      <div class="sec-title-block">
+        <div class="sec-label">ABOUT</div>
+        <h2>Who I Am</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="card about-text">
+        <p>I'm a <strong>Statistical Data Analyst</strong> passionate about helping businesses make sense of their data. I enjoy transforming complex, messy datasets into clear stories and actionable insights — especially within the <strong>financial domain</strong>.</p>
+        <p>My focus is on building dashboards that actually get used, running rigorous statistical analyses, and creating machine learning models that help businesses plan smarter for the future.</p>
+        <p>When I'm not working with data, you'll find me <strong>cycling</strong>, watching <strong>movies</strong>, or out for a <strong>walk</strong>. I love the "aha!" moment when data reveals something new and useful.</p>
+        <div class="tag-wrap">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">SPSS</span>
+          <span class="tag">Excel</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Financial Analytics</span>
+          <span class="tag">AI Automation</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="margin-bottom:1.25rem;">Quick Info</div>
+        <div class="info-row">
+          <span class="info-icon">👤</span>
+          <div><div class="info-lbl">ROLE</div><div class="info-val">Statistical Data Analyst</div></div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">📊</span>
+          <div><div class="info-lbl">DOMAIN</div><div class="info-val">Financial Analytics</div></div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">✉️</span>
+          <div><div class="info-lbl">EMAIL</div><div class="info-val"><a href="mailto:christophermwangi537@gmail.com">christophermwangi537@gmail.com</a></div></div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">💼</span>
+          <div><div class="info-lbl">LINKEDIN</div><div class="info-val"><a href="https://www.linkedin.com/in/christopher537" target="_blank">christopher537</a></div></div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">💻</span>
+          <div><div class="info-lbl">GITHUB</div><div class="info-val"><a href="https://github.com/christophermwangi" target="_blank">christophermwangi</a></div></div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🎯</span>
+          <div><div class="info-lbl">INTERESTS</div><div class="info-val">Cycling · Movies · Walking</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SKILLS ══ -->
+  <div class="page-section" id="sec-skills">
+    <div class="sec-header" style="margin-bottom:1.5rem;">
+      <div class="sec-title-block">
+        <div class="sec-label">SKILLS</div>
+        <h2>Technical Skillset</h2>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;">
+      <div class="card">
+        <div class="skill-group-title">Data Analysis & Visualization</div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">SQL</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Power BI</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Excel (Advanced)</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">SPSS</span><span class="skill-level">Intermediate</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="skill-group-title">Statistical & Business Intelligence</div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Statistical Analysis</span><span class="skill-level">Expert</span></div>
+          <div class="skill-bar"><div class="skill-fill green" data-width="95"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">KPI Development</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill green" data-width="85"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Financial Analytics</span><span class="skill-level">Intermediate</span></div>
+          <div class="skill-bar"><div class="skill-fill green" data-width="70"></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="skill-group-title">Programming & Machine Learning</div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Python</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill amber" data-width="88"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Machine Learning</span><span class="skill-level">Intermediate</span></div>
+          <div class="skill-bar"><div class="skill-fill amber" data-width="65"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Scikit-learn</span><span class="skill-level">Intermediate</span></div>
+          <div class="skill-bar"><div class="skill-fill amber" data-width="60"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">AI Automation</span><span class="skill-level">Learning</span></div>
+          <div class="skill-bar"><div class="skill-fill amber" data-width="45"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PROJECTS ══ -->
+  <div class="page-section" id="sec-projects">
+    <div class="sec-header" style="margin-bottom:1.5rem;">
+      <div class="sec-title-block">
+        <div class="sec-label">PROJECTS</div>
+        <h2>Featured Work</h2>
+      </div>
+    </div>
+    <div class="project-grid">
+      <div class="proj-card">
+        <span class="proj-status active">In Progress</span>
+        <div class="proj-title">Financial Domain Dashboard</div>
+        <p class="proj-desc">An interactive Excel dashboard tracking financial KPIs — revenue, expenses, and key metrics with dynamic charts and automated reporting summaries.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Excel</span>
+          <span class="proj-tag">Power Query</span>
+          <span class="proj-tag">DAX</span>
+          <span class="proj-tag">Financial Analytics</span>
+        </div>
+        <a href="#" class="proj-link">View Project →</a>
+      </div>
+      <div class="proj-card">
+        <span class="proj-status active">In Progress</span>
+        <div class="proj-title">ML Financial Forecasting</div>
+        <p class="proj-desc">Machine learning models to predict financial trends using regression and time-series analysis, supporting smarter data-driven business decisions.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Scikit-learn</span>
+          <span class="proj-tag">Pandas</span>
+          <span class="proj-tag">Matplotlib</span>
+        </div>
+        <a href="#" class="proj-link">View Project →</a>
+      </div>
+      <div class="proj-card">
+        <span class="proj-status soon">Coming Soon</span>
+        <div class="proj-title">AI Automation Pipeline</div>
+        <p class="proj-desc">An AI-powered workflow automating repetitive data tasks — from cleaning and transformation to insight generation and automated reporting.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">AI Tools</span>
+          <span class="proj-tag">Automation</span>
+          <span class="proj-tag">SQL</span>
+        </div>
+        <a href="#" class="proj-link">View Project →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CONTACT ══ -->
+  <div class="page-section" id="sec-contact">
+    <div class="sec-header" style="margin-bottom:1.5rem;">
+      <div class="sec-title-block">
+        <div class="sec-label">CONTACT</div>
+        <h2>Get in Touch</h2>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="card">
+        <div class="card-title">Let's work together</div>
+        <p style="font-size:14px;color:var(--muted);margin:0.5rem 0 1.5rem;line-height:1.8;">Have a data problem to solve, a dashboard to build, or just want to connect? I'd love to hear from you.</p>
+        <a href="mailto:christophermwangi537@gmail.com" class="contact-link">
+          <div class="clink-icon">✉</div>
+          christophermwangi537@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/christopher537" class="contact-link" target="_blank">
+          <div class="clink-icon" style="font-size:13px;font-weight:700;font-family:var(--mono);">in</div>
+          linkedin.com/in/christopher537
+        </a>
+        <a href="https://github.com/christophermwangi" class="contact-link" target="_blank">
+          <div class="clink-icon" style="font-size:12px;font-family:var(--mono);">&lt;/&gt;</div>
+          github.com/christophermwangi
+        </a>
+      </div>
+      <div class="card">
+        <div class="form-group">
+          <label>YOUR NAME</label>
+          <input type="text" placeholder="Jane Doe"/>
+        </div>
+        <div class="form-group">
+          <label>EMAIL ADDRESS</label>
+          <input type="email" placeholder="jane@example.com"/>
+        </div>
+        <div class="form-group">
+          <label>MESSAGE</label>
+          <textarea placeholder="Tell me about your project or opportunity..."></textarea>
+        </div>
+        <a href="mailto:christophermwangi537@gmail.com" class="btn-primary">Send Message</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<footer>
+  <div class="footer-inner">
+    <p>© 2025 Christopher Mwangi — Statistical Data Analyst</p>
+    <p>Built for <a href="https://christophermwangi.github.io/">christophermwangi.github.io</a></p>
+  </div>
+</footer>
+
+<script>
+// ── NAVIGATION ──
+const navMap = {
+  home: 'nav-home',
+  about: 'nav-about',
+  skills: 'nav-skills',
+  projects: 'nav-projects',
+  contact: 'nav-contact',
+};
+
+function showSection(key) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('sec-' + key).classList.add('active');
+  const navEl = document.getElementById(navMap[key]);
+  if (navEl) navEl.classList.add('active');
+  if (key === 'skills') setTimeout(animateBars, 80);
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ── SKILL BARS ──
+function animateBars() {
+  document.querySelectorAll('.skill-fill').forEach(bar => {
+    if (!bar.dataset.animated) {
+      bar.dataset.animated = '1';
+      bar.style.width = bar.dataset.width + '%';
+    }
+  });
+}
+
+// ── KPI COUNTERS ──
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const dur = 1400;
+  const start = performance.now();
+  function tick(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(ease * target) + '+';
+    if (p < 1) requestAnimationFrame(tick);
+    else el.textContent = target + '+';
+  }
+  requestAnimationFrame(tick);
+}
+
+// ── MINI CHART ──
+const chartData = [
+  {label:'SQL',    value:90, color:'#2563eb'},
+  {label:'Python', value:88, color:'#2563eb'},
+  {label:'Excel',  value:92, color:'#2563eb'},
+  {label:'Power BI',value:85,color:'#2563eb'},
+  {label:'Stats',  value:95, color:'#059669'},
+  {label:'SPSS',   value:70, color:'#059669'},
+  {label:'ML',     value:65, color:'#d97706'},
+  {label:'AI',     value:45, color:'#d97706'},
+];
+
+function buildChart() {
+  const chart = document.getElementById('skillChart');
+  if (!chart) return;
+  chart.innerHTML = '';
+  const maxH = 90;
+  chartData.forEach(d => {
+    const col = document.createElement('div');
+    col.className = 'chart-col';
+    const bar = document.createElement('div');
+    bar.className = 'chart-bar';
+    bar.style.cssText = `background:${d.color}22; border:1.5px solid ${d.color}66; height:0;`;
+    bar.title = `${d.label}: ${d.value}%`;
+    const lbl = document.createElement('div');
+    lbl.className = 'chart-lbl';
+    lbl.textContent = d.label;
+    col.appendChild(bar);
+    col.appendChild(lbl);
+    chart.appendChild(col);
+    setTimeout(() => {
+      bar.style.transition = 'height 1s cubic-bezier(0.4,0,0.2,1)';
+      bar.style.height = (d.value / 100 * maxH) + 'px';
+      bar.style.background = d.color + '33';
+    }, 200);
+  });
+}
+
+window.addEventListener('load', () => {
+  buildChart();
+  document.querySelectorAll('.kpi-count').forEach(animateCounter);
+});
+</script>
+</body>
+</html>
