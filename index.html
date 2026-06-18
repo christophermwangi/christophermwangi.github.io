@@ -4,53 +4,106 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Christopher Mwangi — Statistical Data Analyst</title>
+<meta name="description" content="Statistical Data Analyst specializing in financial analytics, machine learning, and AI automation."/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
 :root{
-  --white:    #ffffff;
-  --bg:       #f5f6f8;
-  --bg2:      #eef0f4;
-  --navy:     #0f1f3d;
-  --navy2:    #1a3260;
-  --blue:     #2563eb;
-  --blue-lt:  #eff4ff;
-  --blue-mid: rgba(37,99,235,0.15);
-  --green:    #059669;
-  --green-lt: #ecfdf5;
-  --amber:    #d97706;
-  --amber-lt: #fffbeb;
-  --red:      #dc2626;
-  --red-lt:   #fef2f2;
-  --text:     #0f1f3d;
-  --muted:    #64748b;
-  --border:   #e2e6ed;
-  --shadow:   0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
-  --shadow-md:0 4px 12px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.06);
-  --mono:     'DM Mono', monospace;
-  --sans:     'DM Sans', sans-serif;
-  --radius:   12px;
+  /* Dark theme colors */
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #111827;
+  --bg-card: #1a2332;
+  --bg-card-hover: #1f2a3d;
+  --bg-input: #0f1729;
+  
+  --text-primary: #e8edf5;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  --border-color: #2a3a5a;
+  --border-light: #1f2a3d;
+  
+  --blue: #3b82f6;
+  --blue-dark: #2563eb;
+  --blue-lt: rgba(59, 130, 246, 0.15);
+  --blue-mid: rgba(59, 130, 246, 0.25);
+  
+  --green: #10b981;
+  --green-lt: rgba(16, 185, 129, 0.15);
+  
+  --amber: #f59e0b;
+  --amber-lt: rgba(245, 158, 11, 0.15);
+  
+  --red: #ef4444;
+  --red-lt: rgba(239, 68, 68, 0.15);
+  
+  --gradient-1: linear-gradient(135deg, #1a2332 0%, #0a0e1a 100%);
+  --gradient-2: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-3: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+  
+  --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4), 0 12px 40px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.5);
+  
+  --mono: 'DM Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+  --radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Responsive spacing */
+  --space-page: 2.5rem;
+  --space-card: 1.75rem;
+  --space-hero: 3rem;
+  --space-gap: 1.5rem;
+  --space-kpi: 1rem;
 }
 
 html{scroll-behavior:smooth;}
 
 body{
-  background: var(--bg);
-  color: var(--text);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   font-family: var(--sans);
   font-size: 15px;
   line-height: 1.65;
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
 }
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.2); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue-dark); }
 
 /* ── NAV ─────────────────────────────────────── */
 nav{
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
-  z-index: 100;
-  box-shadow: 0 1px 0 var(--border);
+  z-index: 1000;
 }
 
 .nav-inner{
@@ -68,19 +121,21 @@ nav{
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .brand-monogram{
   width: 38px; height: 38px;
-  background: var(--navy);
+  background: var(--gradient-2);
   border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--mono);
   font-size: 13px; font-weight: 500;
-  color: var(--white);
-  letter-spacing: 0.02em;
+  color: white;
   flex-shrink: 0;
+  transition: var(--transition);
 }
+.brand-monogram:hover { transform: rotate(-5deg) scale(1.05); }
 
 .brand-text{
   display: flex;
@@ -90,13 +145,13 @@ nav{
 .brand-name{
   font-size: 14px;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--text-primary);
   line-height: 1.1;
 }
 
 .brand-role{
   font-size: 11px;
-  color: var(--muted);
+  color: var(--text-secondary);
   font-family: var(--mono);
 }
 
@@ -110,46 +165,95 @@ nav{
   padding: 0.45rem 1rem;
   font-size: 14px;
   font-weight: 500;
-  color: var(--muted);
+  color: var(--text-secondary);
   text-decoration: none;
   border-radius: 8px;
-  transition: color 0.15s, background 0.15s;
+  transition: var(--transition);
+  position: relative;
 }
 
-.nav-links a:hover{ color: var(--navy); background: var(--bg); }
+.nav-links a:hover{ color: var(--text-primary); background: var(--bg-card); }
 .nav-links a.active{ color: var(--blue); background: var(--blue-lt); }
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--blue);
+  transition: var(--transition);
+  transform: translateX(-50%);
+}
+.nav-links a.active::after { width: 60%; }
 
 .nav-cta{
   padding: 0.5rem 1.25rem;
-  background: var(--navy);
-  color: var(--white);
+  background: var(--gradient-2);
+  color: white;
   font-size: 13px;
   font-weight: 600;
   border-radius: 8px;
   text-decoration: none;
-  transition: background 0.15s;
+  transition: var(--transition);
 }
-.nav-cta:hover{ background: var(--navy2); }
+.nav-cta:hover{ transform: translateY(-2px); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3); }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 2.5px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 /* ── LAYOUT ──────────────────────────────────── */
 .page{
   max-width: 1160px;
   margin: 0 auto;
-  padding: 2.5rem 2rem 5rem;
+  padding: var(--space-page) 2rem 5rem;
 }
 
 /* ── HERO ─────────────────────────────────────── */
 .hero{
-  background: var(--white);
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 16px;
   box-shadow: var(--shadow);
-  padding: 3rem 3rem 2.5rem;
-  margin-bottom: 1.5rem;
+  padding: var(--space-hero) var(--space-hero) calc(var(--space-hero) - 0.5rem);
+  margin-bottom: var(--space-gap);
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 3rem;
   align-items: center;
+  animation: slideUp 0.6s ease forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .hero-eyebrow{
@@ -161,7 +265,7 @@ nav{
   font-weight: 500;
   color: var(--blue);
   background: var(--blue-lt);
-  border: 1px solid rgba(37,99,235,0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   padding: 4px 12px;
   border-radius: 999px;
   letter-spacing: 0.06em;
@@ -173,17 +277,22 @@ nav{
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  color: var(--navy);
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .hero-accent{
-  color: var(--blue);
+  background: var(--gradient-2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
 }
 
 .hero-sub{
   font-size: 15px;
-  color: var(--muted);
+  color: var(--text-secondary);
   max-width: 520px;
   line-height: 1.8;
   margin-bottom: 2rem;
@@ -197,58 +306,61 @@ nav{
 
 .btn-primary{
   padding: 0.6rem 1.5rem;
-  background: var(--navy);
-  color: var(--white);
+  background: var(--gradient-2);
+  color: white;
   font-size: 14px;
   font-weight: 600;
   border-radius: 8px;
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
+  transition: var(--transition);
   display: inline-block;
 }
-.btn-primary:hover{ background: var(--navy2); transform: translateY(-1px); }
+.btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3); }
 
 .btn-outline{
   padding: 0.6rem 1.5rem;
   background: transparent;
-  color: var(--navy);
+  color: var(--text-primary);
   font-size: 14px;
   font-weight: 600;
   border-radius: 8px;
   text-decoration: none;
-  border: 1.5px solid var(--border);
-  transition: border-color 0.15s, background 0.15s;
+  border: 1.5px solid var(--border-color);
+  transition: var(--transition);
   display: inline-block;
 }
-.btn-outline:hover{ border-color: var(--navy); background: var(--bg); }
+.btn-outline:hover{ border-color: var(--blue); background: var(--blue-lt); transform: translateY(-2px); }
 
 .hero-avatar{
   width: 140px; height: 140px;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  background: var(--gradient-2);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--mono);
   font-size: 36px;
   font-weight: 700;
-  color: var(--white);
+  color: white;
   flex-shrink: 0;
   letter-spacing: -0.02em;
   box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  animation: glow 3s ease-in-out infinite;
 }
+.hero-avatar:hover { transform: scale(1.05) rotate(-2deg); }
 
 /* ── KPI ROW ─────────────────────────────────── */
 .kpi-row{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: var(--space-kpi);
+  margin-bottom: var(--space-gap);
 }
 
 .kpi-card{
-  background: var(--white);
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 1.25rem 1.5rem;
   box-shadow: var(--shadow);
@@ -256,14 +368,19 @@ nav{
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: var(--transition);
+  cursor: default;
 }
-.kpi-card:hover{ box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.kpi-card:hover{ 
+  box-shadow: var(--shadow-lg); 
+  transform: translateY(-4px);
+  border-color: var(--blue);
+}
 
 .kpi-label{
   font-size: 11px;
   font-weight: 600;
-  color: var(--muted);
+  color: var(--text-secondary);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-family: var(--mono);
@@ -275,12 +392,12 @@ nav{
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
-  color: var(--navy);
+  color: var(--text-primary);
 }
 
 .kpi-sub{
   font-size: 12px;
-  color: var(--muted);
+  color: var(--text-secondary);
   margin-top: 4px;
   font-family: var(--mono);
 }
@@ -302,36 +419,38 @@ nav{
 .main-grid{
   display: grid;
   grid-template-columns: 1fr 340px;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: var(--space-gap);
+  margin-bottom: var(--space-gap);
 }
 
 /* ── CARD ────────────────────────────────────── */
 .card{
-  background: var(--white);
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius);
-  padding: 1.75rem;
+  padding: var(--space-card);
   box-shadow: var(--shadow);
+  transition: var(--transition);
 }
+.card:hover { box-shadow: var(--shadow-md); border-color: var(--blue); }
 
 .card-title{
   font-size: 16px;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
 .card-sub{
   font-size: 12px;
-  color: var(--muted);
+  color: var(--text-secondary);
   font-family: var(--mono);
   margin-bottom: 1.5rem;
 }
 
 .card-divider{
   border: none;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-color);
   margin: 1.25rem 0;
 }
 
@@ -340,7 +459,7 @@ nav{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-gap);
 }
 
 .sec-title-block .sec-label{
@@ -355,7 +474,7 @@ nav{
 .sec-title-block h2{
   font-size: 22px;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--text-primary);
   letter-spacing: -0.02em;
 }
 
@@ -365,13 +484,13 @@ nav{
 .skill-group-title{
   font-size: 11px;
   font-weight: 600;
-  color: var(--muted);
+  color: var(--text-secondary);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: var(--mono);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .skill-item{ margin-bottom: 0.85rem; }
@@ -383,12 +502,12 @@ nav{
   margin-bottom: 5px;
 }
 
-.skill-name{ font-weight: 500; color: var(--navy); }
-.skill-level{ color: var(--muted); font-family: var(--mono); font-size: 11px; }
+.skill-name{ font-weight: 500; color: var(--text-primary); }
+.skill-level{ color: var(--text-secondary); font-family: var(--mono); font-size: 11px; }
 
 .skill-bar{
   height: 6px;
-  background: var(--bg2);
+  background: var(--bg-primary);
   border-radius: 99px;
   overflow: hidden;
 }
@@ -397,32 +516,36 @@ nav{
   height: 100%;
   border-radius: 99px;
   width: 0;
-  background: linear-gradient(90deg, var(--blue), #60a5fa);
+  background: var(--gradient-2);
   transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
 }
 
-.skill-fill.green{ background: linear-gradient(90deg, var(--green), #34d399); }
+.skill-fill.green{ background: var(--gradient-3); }
 .skill-fill.amber{ background: linear-gradient(90deg, var(--amber), #fcd34d); }
 
 /* ── PROJECT CARDS ──────────────────────────── */
 .project-grid{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  margin-bottom: 1.5rem;
+  gap: var(--space-gap);
+  margin-bottom: var(--space-gap);
 }
 
 .proj-card{
-  background: var(--white);
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 1.5rem;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: var(--transition);
 }
-.proj-card:hover{ box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.proj-card:hover{ 
+  box-shadow: var(--shadow-lg); 
+  transform: translateY(-6px);
+  border-color: var(--blue);
+}
 
 .proj-status{
   display: inline-flex;
@@ -437,12 +560,12 @@ nav{
   margin-bottom: 1rem;
   width: fit-content;
 }
-.proj-status.active{ background: var(--green-lt); color: var(--green); border: 1px solid rgba(5,150,105,0.2); }
-.proj-status.soon{ background: var(--amber-lt); color: var(--amber); border: 1px solid rgba(217,119,6,0.2); }
-.proj-status::before{ content:''; width:6px; height:6px; border-radius:50%; background:currentColor; }
+.proj-status.active{ background: var(--green-lt); color: var(--green); border: 1px solid rgba(16,185,129,0.2); }
+.proj-status.soon{ background: var(--amber-lt); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+.proj-status::before{ content:''; width:6px; height:6px; border-radius:50%; background:currentColor; animation: pulse 2s infinite; }
 
-.proj-title{ font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
-.proj-desc{ font-size: 13px; color: var(--muted); line-height: 1.7; flex: 1; margin-bottom: 1.25rem; }
+.proj-title{ font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+.proj-desc{ font-size: 13px; color: var(--text-secondary); line-height: 1.7; flex: 1; margin-bottom: 1.25rem; }
 
 .proj-tags{ display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
 
@@ -450,10 +573,10 @@ nav{
   font-family: var(--mono);
   font-size: 10px;
   padding: 3px 8px;
-  background: var(--bg2);
-  color: var(--muted);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
   border-radius: 4px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-color);
 }
 
 .proj-link{
@@ -464,9 +587,9 @@ nav{
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  transition: gap 0.15s;
+  transition: var(--transition);
 }
-.proj-link:hover{ gap: 8px; }
+.proj-link:hover{ gap: 12px; color: #60a5fa; }
 
 /* ── ACTIVITY LIST ──────────────────────────── */
 .activity-item{
@@ -474,9 +597,11 @@ nav{
   align-items: flex-start;
   gap: 12px;
   padding: 0.85rem 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition);
 }
 .activity-item:last-child{ border-bottom: none; padding-bottom: 0; }
+.activity-item:hover { padding-left: 8px; }
 
 .act-dot{
   width: 36px; height: 36px;
@@ -491,8 +616,8 @@ nav{
 .dot-amber{ background: var(--amber-lt); color: var(--amber); }
 
 .act-body{ flex: 1; }
-.act-text{ font-size: 13px; color: var(--navy); font-weight: 500; line-height: 1.4; }
-.act-sub{ font-size: 12px; color: var(--muted); margin-top: 2px; font-family: var(--mono); }
+.act-text{ font-size: 13px; color: var(--text-primary); font-weight: 500; line-height: 1.4; }
+.act-sub{ font-size: 12px; color: var(--text-secondary); margin-top: 2px; font-family: var(--mono); }
 
 /* ── CHART BARS ─────────────────────────────── */
 .mini-chart{
@@ -516,28 +641,31 @@ nav{
 .chart-bar{
   width: 100%;
   border-radius: 4px 4px 0 0;
-  transition: height 1s cubic-bezier(0.4,0,0.2,1);
+  transition: height 1.2s cubic-bezier(0.4,0,0.2,1), background 0.3s;
   cursor: pointer;
   min-height: 4px;
 }
-.chart-bar:hover{ opacity: 0.75; }
+.chart-bar:hover{ 
+  opacity: 0.8;
+  transform: scaleX(1.05);
+}
 
 .chart-lbl{
   font-family: var(--mono);
   font-size: 9px;
-  color: var(--muted);
+  color: var(--text-secondary);
 }
 
 /* ── ABOUT SECTION ──────────────────────────── */
 .about-grid{
   display: grid;
   grid-template-columns: 1fr 320px;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: var(--space-gap);
+  margin-bottom: var(--space-gap);
 }
 
-.about-text p{ font-size: 14px; color: var(--muted); line-height: 1.85; margin-bottom: 1rem; }
-.about-text p strong{ color: var(--navy); font-weight: 600; }
+.about-text p{ font-size: 14px; color: var(--text-secondary); line-height: 1.85; margin-bottom: 1rem; }
+.about-text p strong{ color: var(--text-primary); font-weight: 600; }
 
 .tag-wrap{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
 
@@ -547,56 +675,65 @@ nav{
   padding: 4px 12px;
   background: var(--blue-lt);
   color: var(--blue);
-  border: 1px solid rgba(37,99,235,0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   border-radius: 6px;
   font-weight: 500;
+  transition: var(--transition);
+  cursor: default;
 }
+.tag:hover { background: var(--blue); color: white; border-color: var(--blue); transform: scale(1.05); }
 
 .info-row{
   display: flex;
   gap: 12px;
   align-items: flex-start;
   padding: 0.75rem 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-color);
   font-size: 13px;
 }
 .info-row:last-child{ border-bottom: none; }
 .info-icon{ font-size: 15px; flex-shrink: 0; margin-top: 1px; }
-.info-lbl{ font-family: var(--mono); font-size: 10px; color: var(--muted); margin-bottom: 2px; letter-spacing: 0.06em; }
-.info-val{ color: var(--navy); font-weight: 500; }
-.info-val a{ color: var(--blue); text-decoration: none; }
-.info-val a:hover{ text-decoration: underline; }
+.info-lbl{ font-family: var(--mono); font-size: 10px; color: var(--text-secondary); margin-bottom: 2px; letter-spacing: 0.06em; }
+.info-val{ color: var(--text-primary); font-weight: 500; }
+.info-val a{ color: var(--blue); text-decoration: none; transition: var(--transition); }
+.info-val a:hover{ text-decoration: underline; color: #60a5fa; }
 
 /* ── CONTACT ─────────────────────────────────── */
 .contact-grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: var(--space-gap);
+  margin-bottom: var(--space-gap);
 }
 
 .contact-link{
   display: flex; align-items: center; gap: 12px;
   padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-color);
   text-decoration: none;
   font-size: 14px;
-  color: var(--muted);
+  color: var(--text-secondary);
   font-weight: 500;
-  transition: color 0.15s;
+  transition: var(--transition);
 }
 .contact-link:last-of-type{ border-bottom: none; }
-.contact-link:hover{ color: var(--blue); }
+.contact-link:hover{ color: var(--blue); transform: translateX(4px); }
 
 .clink-icon{
   width: 38px; height: 38px;
   background: var(--blue-lt);
   color: var(--blue);
-  border: 1px solid rgba(37,99,235,0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
   font-size: 16px;
   flex-shrink: 0;
+  transition: var(--transition);
+}
+.contact-link:hover .clink-icon { 
+  background: var(--blue); 
+  color: white; 
+  transform: rotate(-5deg);
 }
 
 .form-group{ margin-bottom: 1rem; }
@@ -604,7 +741,7 @@ nav{
   display: block;
   font-size: 12px;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--text-primary);
   margin-bottom: 6px;
   font-family: var(--mono);
   letter-spacing: 0.04em;
@@ -612,15 +749,15 @@ nav{
 .form-group input,
 .form-group textarea{
   width: 100%;
-  background: var(--bg);
-  border: 1.5px solid var(--border);
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-color);
   border-radius: 8px;
   padding: 0.65rem 0.9rem;
-  color: var(--navy);
+  color: var(--text-primary);
   font-family: var(--sans);
   font-size: 14px;
   outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: var(--transition);
   resize: vertical;
 }
 .form-group input:focus,
@@ -630,22 +767,45 @@ nav{
 }
 .form-group textarea{ min-height: 110px; }
 
+/* ── BACK TO TOP ────────────────────────────── */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  background: var(--gradient-2);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999;
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.back-to-top:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
 /* ── FOOTER ──────────────────────────────────── */
 footer{
-  border-top: 1px solid var(--border);
-  background: var(--white);
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-secondary);
   margin-top: 4rem;
   padding: 1.5rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 100%;
 }
 
 .footer-inner{
   max-width: 1160px;
   margin: 0 auto;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -653,15 +813,45 @@ footer{
   gap: 1rem;
 }
 
-footer p{ font-size: 13px; color: var(--muted); font-family: var(--mono); }
-footer a{ color: var(--blue); text-decoration: none; }
+footer p{ font-size: 13px; color: var(--text-secondary); font-family: var(--mono); }
+footer a{ color: var(--blue); text-decoration: none; transition: var(--transition); }
+footer a:hover { color: #60a5fa; text-decoration: underline; }
 
 /* ── PAGE SECTIONS ───────────────────────────── */
-.page-section{ display: none; }
-.page-section.active{ display: block; }
+.page-section{ 
+  display: none; 
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.page-section.active{ 
+  display: block; 
+  opacity: 1;
+  animation: slideUp 0.5s ease forwards;
+}
 
 /* ── RESPONSIVE ──────────────────────────────── */
+
+@media(max-width:1024px){
+  :root {
+    --space-page: 2rem;
+    --space-card: 1.5rem;
+    --space-hero: 2.5rem;
+    --space-gap: 1.25rem;
+    --space-kpi: 0.8rem;
+  }
+  .main-grid{ grid-template-columns: 1fr 300px; }
+  .about-grid{ grid-template-columns: 1fr 280px; }
+}
+
 @media(max-width:900px){
+  :root {
+    --space-page: 1.5rem;
+    --space-card: 1.25rem;
+    --space-hero: 2rem;
+    --space-gap: 1rem;
+    --space-kpi: 0.7rem;
+  }
+  
   .hero{ grid-template-columns: 1fr; }
   .hero-avatar{ display: none; }
   .kpi-row{ grid-template-columns: repeat(2,1fr); }
@@ -669,12 +859,75 @@ footer a{ color: var(--blue); text-decoration: none; }
   .project-grid{ grid-template-columns: 1fr; }
   .about-grid{ grid-template-columns: 1fr; }
   .contact-grid{ grid-template-columns: 1fr; }
-  .nav-links{ display: none; }
+  
+  .nav-links{ 
+    display: none; 
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+  }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
+  
+  .page { padding: var(--space-page) 1.5rem 3rem; }
 }
 
 @media(max-width:600px){
+  :root {
+    --space-page: 1rem;
+    --space-card: 1rem;
+    --space-hero: 1.5rem;
+    --space-gap: 0.8rem;
+    --space-kpi: 0.6rem;
+  }
+  
   .kpi-row{ grid-template-columns: 1fr; }
-  .page{ padding: 1.5rem 1rem 4rem; }
+  .page{ padding: var(--space-page) 1rem 2.5rem; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions a { text-align: center; }
+  .hero h1 { font-size: 1.8rem; }
+  .hero-sub { font-size: 14px; }
+  
+  .nav-inner { padding: 0 1rem; }
+  .brand-text .brand-name { font-size: 12px; }
+  .brand-text .brand-role { font-size: 9px; }
+  .brand-monogram { width: 32px; height: 32px; font-size: 11px; }
+  .nav-cta { padding: 0.4rem 0.8rem; font-size: 11px; }
+  
+  .kpi-card { padding: 0.8rem 1rem; }
+  .kpi-value { font-size: 1.25rem; }
+  .kpi-icon { width: 32px; height: 32px; font-size: 14px; }
+  
+  .card { padding: var(--space-card); }
+  .sec-title-block h2 { font-size: 18px; }
+  .project-grid { gap: 0.8rem; }
+  .proj-card { padding: 1rem; }
+}
+
+@media(max-width:380px){
+  :root {
+    --space-page: 0.8rem;
+    --space-card: 0.8rem;
+    --space-hero: 1.2rem;
+    --space-gap: 0.6rem;
+  }
+  
+  .hero h1 { font-size: 1.5rem; }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-outline { 
+    padding: 0.4rem 1rem; 
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+  }
+  .nav-links a { padding: 0.3rem 0.8rem; font-size: 12px; }
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -694,14 +947,21 @@ footer a{ color: var(--blue); text-decoration: none; }
         <span class="brand-role">Statistical Data Analyst</span>
       </div>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="#" class="active" id="nav-home" onclick="showSection('home');return false;">Overview</a></li>
       <li><a href="#" id="nav-about" onclick="showSection('about');return false;">About</a></li>
       <li><a href="#" id="nav-skills" onclick="showSection('skills');return false;">Skills</a></li>
       <li><a href="#" id="nav-projects" onclick="showSection('projects');return false;">Projects</a></li>
       <li><a href="#" id="nav-contact" onclick="showSection('contact');return false;">Contact</a></li>
     </ul>
-    <a href="mailto:christophermwangi537@gmail.com" class="nav-cta">Hire Me</a>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <a href="mailto:christophermwangi537@gmail.com" class="nav-cta">Hire Me</a>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -712,14 +972,15 @@ footer a{ color: var(--blue); text-decoration: none; }
   <div class="page-section active" id="sec-home">
 
     <!-- Hero card -->
-    <div class="hero" style="margin-bottom:1.5rem;">
+    <div class="hero">
       <div>
-        <div class="hero-eyebrow">Statistical Data Analyst · Financial Domain</div>
+        <div class="hero-eyebrow">🚀 Statistical Data Analyst · Financial Domain</div>
         <h1>Christopher<br><span class="hero-accent">Mwangi</span></h1>
         <p class="hero-sub">I turn complex datasets into clear, actionable insights — specialising in statistical analysis, financial analytics, and AI-powered automation.</p>
         <div class="hero-actions">
-          <a href="#" onclick="showSection('projects');return false;" class="btn-primary">View Projects</a>
-          <a href="#" onclick="showSection('contact');return false;" class="btn-outline">Get in Touch</a>
+          <a href="#" onclick="showSection('projects');return false;" class="btn-primary">📊 View Projects</a>
+          <a href="#" onclick="showSection('contact');return false;" class="btn-outline">📬 Get in Touch</a>
+          <a href="#" class="btn-outline" onclick="downloadResume();return false;">📄 Resume</a>
         </div>
       </div>
       <div class="hero-avatar">CM</div>
@@ -769,13 +1030,13 @@ footer a{ color: var(--blue); text-decoration: none; }
         <div class="mini-chart" id="skillChart"></div>
         <hr class="card-divider"/>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-          <span style="font-size:12px;color:var(--muted);font-family:var(--mono);">
+          <span style="font-size:12px;color:var(--text-secondary);font-family:var(--mono);">
             <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--blue);margin-right:4px;vertical-align:middle;"></span>Core Tools
           </span>
-          <span style="font-size:12px;color:var(--muted);font-family:var(--mono);">
+          <span style="font-size:12px;color:var(--text-secondary);font-family:var(--mono);">
             <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--green);margin-right:4px;vertical-align:middle;"></span>Statistical
           </span>
-          <span style="font-size:12px;color:var(--muted);font-family:var(--mono);">
+          <span style="font-size:12px;color:var(--text-secondary);font-family:var(--mono);">
             <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--amber);margin-right:4px;vertical-align:middle;"></span>ML / AI
           </span>
         </div>
@@ -795,7 +1056,7 @@ footer a{ color: var(--blue); text-decoration: none; }
           <div class="act-dot dot-blue">ML</div>
           <div class="act-body">
             <div class="act-text">ML Financial Forecasting</div>
-            <div class="act-sub">Time-series exploration — this week</div>
+            <div class="act-sub">Time-series exploration</div>
           </div>
         </div>
         <div class="activity-item">
@@ -812,7 +1073,7 @@ footer a{ color: var(--blue); text-decoration: none; }
 
   <!-- ══ ABOUT ══ -->
   <div class="page-section" id="sec-about">
-    <div class="sec-header" style="margin-bottom:1.5rem;">
+    <div class="sec-header">
       <div class="sec-title-block">
         <div class="sec-label">ABOUT</div>
         <h2>Who I Am</h2>
@@ -822,7 +1083,7 @@ footer a{ color: var(--blue); text-decoration: none; }
       <div class="card about-text">
         <p>I'm a <strong>Statistical Data Analyst</strong> passionate about helping businesses make sense of their data. I enjoy transforming complex, messy datasets into clear stories and actionable insights — especially within the <strong>financial domain</strong>.</p>
         <p>My focus is on building dashboards that actually get used, running rigorous statistical analyses, and creating machine learning models that help businesses plan smarter for the future.</p>
-        <p>When I'm not working with data, you'll find me <strong>cycling</strong>, watching <strong>movies</strong>, or out for a <strong>walk</strong>. I love the "aha!" moment when data reveals something new and useful.</p>
+        <p>When I'm not working with data, you'll find me <strong>cycling</strong> 🚴, watching <strong>movies</strong> 🎬, or out for a <strong>walk</strong> 🌳. I love the "aha!" moment when data reveals something new and useful.</p>
         <div class="tag-wrap">
           <span class="tag">Python</span>
           <span class="tag">SQL</span>
@@ -866,13 +1127,13 @@ footer a{ color: var(--blue); text-decoration: none; }
 
   <!-- ══ SKILLS ══ -->
   <div class="page-section" id="sec-skills">
-    <div class="sec-header" style="margin-bottom:1.5rem;">
+    <div class="sec-header">
       <div class="sec-title-block">
         <div class="sec-label">SKILLS</div>
         <h2>Technical Skillset</h2>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-gap);">
       <div class="card">
         <div class="skill-group-title">Data Analysis & Visualization</div>
         <div class="skill-item">
@@ -893,7 +1154,7 @@ footer a{ color: var(--blue); text-decoration: none; }
         </div>
       </div>
       <div class="card">
-        <div class="skill-group-title">Statistical & Business Intelligence</div>
+        <div class="skill-group-title">Statistical & BI</div>
         <div class="skill-item">
           <div class="skill-row"><span class="skill-name">Statistical Analysis</span><span class="skill-level">Expert</span></div>
           <div class="skill-bar"><div class="skill-fill green" data-width="95"></div></div>
@@ -908,7 +1169,7 @@ footer a{ color: var(--blue); text-decoration: none; }
         </div>
       </div>
       <div class="card">
-        <div class="skill-group-title">Programming & Machine Learning</div>
+        <div class="skill-group-title">Programming & ML</div>
         <div class="skill-item">
           <div class="skill-row"><span class="skill-name">Python</span><span class="skill-level">Advanced</span></div>
           <div class="skill-bar"><div class="skill-fill amber" data-width="88"></div></div>
@@ -931,7 +1192,7 @@ footer a{ color: var(--blue); text-decoration: none; }
 
   <!-- ══ PROJECTS ══ -->
   <div class="page-section" id="sec-projects">
-    <div class="sec-header" style="margin-bottom:1.5rem;">
+    <div class="sec-header">
       <div class="sec-title-block">
         <div class="sec-label">PROJECTS</div>
         <h2>Featured Work</h2>
@@ -941,45 +1202,42 @@ footer a{ color: var(--blue); text-decoration: none; }
       <div class="proj-card">
         <span class="proj-status active">In Progress</span>
         <div class="proj-title">Financial Domain Dashboard</div>
-        <p class="proj-desc">An interactive Excel dashboard tracking financial KPIs — revenue, expenses, and key metrics with dynamic charts and automated reporting summaries.</p>
+        <p class="proj-desc">Interactive Excel dashboard tracking financial KPIs with dynamic charts and automated reporting summaries.</p>
         <div class="proj-tags">
           <span class="proj-tag">Excel</span>
           <span class="proj-tag">Power Query</span>
           <span class="proj-tag">DAX</span>
-          <span class="proj-tag">Financial Analytics</span>
         </div>
-        <a href="#" class="proj-link">View Project →</a>
+        <a href="#" class="proj-link" onclick="openProject('Financial Domain Dashboard');return false;">View Project →</a>
       </div>
       <div class="proj-card">
         <span class="proj-status active">In Progress</span>
         <div class="proj-title">ML Financial Forecasting</div>
-        <p class="proj-desc">Machine learning models to predict financial trends using regression and time-series analysis, supporting smarter data-driven business decisions.</p>
+        <p class="proj-desc">Machine learning models using regression and time-series analysis for smarter business decisions.</p>
         <div class="proj-tags">
           <span class="proj-tag">Python</span>
           <span class="proj-tag">Scikit-learn</span>
           <span class="proj-tag">Pandas</span>
-          <span class="proj-tag">Matplotlib</span>
         </div>
-        <a href="#" class="proj-link">View Project →</a>
+        <a href="#" class="proj-link" onclick="openProject('ML Financial Forecasting');return false;">View Project →</a>
       </div>
       <div class="proj-card">
         <span class="proj-status soon">Coming Soon</span>
         <div class="proj-title">AI Automation Pipeline</div>
-        <p class="proj-desc">An AI-powered workflow automating repetitive data tasks — from cleaning and transformation to insight generation and automated reporting.</p>
+        <p class="proj-desc">AI-powered workflow automating data tasks from cleaning to insight generation and reporting.</p>
         <div class="proj-tags">
           <span class="proj-tag">Python</span>
           <span class="proj-tag">AI Tools</span>
           <span class="proj-tag">Automation</span>
-          <span class="proj-tag">SQL</span>
         </div>
-        <a href="#" class="proj-link">View Project →</a>
+        <a href="#" class="proj-link" onclick="openProject('AI Automation Pipeline');return false;">View Project →</a>
       </div>
     </div>
   </div>
 
   <!-- ══ CONTACT ══ -->
   <div class="page-section" id="sec-contact">
-    <div class="sec-header" style="margin-bottom:1.5rem;">
+    <div class="sec-header">
       <div class="sec-title-block">
         <div class="sec-label">CONTACT</div>
         <h2>Get in Touch</h2>
@@ -988,7 +1246,7 @@ footer a{ color: var(--blue); text-decoration: none; }
     <div class="contact-grid">
       <div class="card">
         <div class="card-title">Let's work together</div>
-        <p style="font-size:14px;color:var(--muted);margin:0.5rem 0 1.5rem;line-height:1.8;">Have a data problem to solve, a dashboard to build, or just want to connect? I'd love to hear from you.</p>
+        <p style="font-size:14px;color:var(--text-secondary);margin:0.5rem 0 1.5rem;line-height:1.8;">Have a data problem to solve, a dashboard to build, or just want to connect? I'd love to hear from you.</p>
         <a href="mailto:christophermwangi537@gmail.com" class="contact-link">
           <div class="clink-icon">✉</div>
           christophermwangi537@gmail.com
@@ -1003,19 +1261,24 @@ footer a{ color: var(--blue); text-decoration: none; }
         </a>
       </div>
       <div class="card">
-        <div class="form-group">
-          <label>YOUR NAME</label>
-          <input type="text" placeholder="Jane Doe"/>
+        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label for="formName">YOUR NAME</label>
+            <input type="text" id="formName" required/>
+          </div>
+          <div class="form-group">
+            <label for="formEmail">EMAIL ADDRESS</label>
+            <input type="email" id="formEmail" required/>
+          </div>
+          <div class="form-group">
+            <label for="formMessage">MESSAGE</label>
+            <textarea id="formMessage" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;">Send Message ✉️</button>
+        </form>
+        <div id="formSuccess" style="display:none;margin-top:1rem;padding:1rem;background:var(--green-lt);border:1px solid var(--green);border-radius:8px;color:var(--green);text-align:center;">
+          ✅ Message sent! I'll get back to you soon.
         </div>
-        <div class="form-group">
-          <label>EMAIL ADDRESS</label>
-          <input type="email" placeholder="jane@example.com"/>
-        </div>
-        <div class="form-group">
-          <label>MESSAGE</label>
-          <textarea placeholder="Tell me about your project or opportunity..."></textarea>
-        </div>
-        <a href="mailto:christophermwangi537@gmail.com" class="btn-primary">Send Message</a>
       </div>
     </div>
   </div>
@@ -1025,11 +1288,22 @@ footer a{ color: var(--blue); text-decoration: none; }
 <footer>
   <div class="footer-inner">
     <p>© 2025 Christopher Mwangi — Statistical Data Analyst</p>
-    <p>Built for <a href="https://christophermwangi.github.io/">christophermwangi.github.io</a></p>
+    <p>Built with ❤️ for <a href="https://christophermwangi.github.io/">christophermwangi.github.io</a></p>
   </div>
 </footer>
 
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 <script>
+// ── HAMBURGER MENU ──
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  const hamburger = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  hamburger.classList.toggle('active');
+}
+
 // ── NAVIGATION ──
 const navMap = {
   home: 'nav-home',
@@ -1040,12 +1314,15 @@ const navMap = {
 };
 
 function showSection(key) {
+  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('active');
+  
   document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   document.getElementById('sec-' + key).classList.add('active');
   const navEl = document.getElementById(navMap[key]);
   if (navEl) navEl.classList.add('active');
-  if (key === 'skills') setTimeout(animateBars, 80);
+  if (key === 'skills') setTimeout(animateBars, 200);
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
@@ -1076,14 +1353,14 @@ function animateCounter(el) {
 
 // ── MINI CHART ──
 const chartData = [
-  {label:'SQL',    value:90, color:'#2563eb'},
-  {label:'Python', value:88, color:'#2563eb'},
-  {label:'Excel',  value:92, color:'#2563eb'},
-  {label:'Power BI',value:85,color:'#2563eb'},
-  {label:'Stats',  value:95, color:'#059669'},
-  {label:'SPSS',   value:70, color:'#059669'},
-  {label:'ML',     value:65, color:'#d97706'},
-  {label:'AI',     value:45, color:'#d97706'},
+  {label:'SQL',    value:90, color:'#3b82f6'},
+  {label:'Python', value:88, color:'#3b82f6'},
+  {label:'Excel',  value:92, color:'#3b82f6'},
+  {label:'Power BI',value:85,color:'#3b82f6'},
+  {label:'Stats',  value:95, color:'#10b981'},
+  {label:'SPSS',   value:70, color:'#10b981'},
+  {label:'ML',     value:65, color:'#f59e0b'},
+  {label:'AI',     value:45, color:'#f59e0b'},
 ];
 
 function buildChart() {
@@ -1105,16 +1382,67 @@ function buildChart() {
     col.appendChild(lbl);
     chart.appendChild(col);
     setTimeout(() => {
-      bar.style.transition = 'height 1s cubic-bezier(0.4,0,0.2,1)';
+      bar.style.transition = 'height 1.2s cubic-bezier(0.4,0,0.2,1)';
       bar.style.height = (d.value / 100 * maxH) + 'px';
-      bar.style.background = d.color + '33';
+      bar.style.background = d.color + '44';
     }, 200);
   });
 }
 
+// ── BACK TO TOP ──
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('backToTop');
+  if (window.scrollY > 400) {
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
+});
+
+// ── PROJECTS ──
+function openProject(name) {
+  alert(`📊 "${name}"\n\nThis project is currently in development.\nCheck back soon for updates!\n\n— Christopher`);
+}
+
+// ── DOWNLOAD RESUME ──
+function downloadResume() {
+  alert('📄 Resume download would work here.\n\nFeel free to contact me directly for my resume.');
+}
+
+// ── CONTACT FORM ──
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('formName').value;
+  const email = document.getElementById('formEmail').value;
+  const message = document.getElementById('formMessage').value;
+  
+  if (!name || !email || !message) {
+    alert('Please fill in all fields.');
+    return;
+  }
+  
+  const btn = e.target.querySelector('button');
+  const originalText = btn.textContent;
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  
+  setTimeout(() => {
+    document.getElementById('formSuccess').style.display = 'block';
+    e.target.reset();
+    btn.textContent = originalText;
+    btn.disabled = false;
+    
+    setTimeout(() => {
+      document.getElementById('formSuccess').style.display = 'none';
+    }, 5000);
+  }, 1500);
+}
+
+// ── INIT ──
 window.addEventListener('load', () => {
   buildChart();
   document.querySelectorAll('.kpi-count').forEach(animateCounter);
+  setTimeout(animateBars, 300);
 });
 </script>
 </body>
