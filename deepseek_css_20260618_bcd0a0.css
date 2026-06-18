@@ -1,0 +1,7 @@
+:root {
+  --space-page: 2.5rem;    /* Page padding */
+  --space-card: 1.75rem;   /* Card padding */
+  --space-hero: 3rem;      /* Hero padding */
+  --space-gap: 1.5rem;     /* Gaps between sections */
+  --space-kpi: 1rem;       /* KPI row gaps */
+}
